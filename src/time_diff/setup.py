@@ -20,6 +20,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'data_publisher = time_diff.data_publisher:main',
+            'data_subscriber = time_diff.data_subscriber:main'
         ],
     },
 )
