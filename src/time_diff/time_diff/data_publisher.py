@@ -5,7 +5,7 @@ import os
 import sys
 sys.path.insert(0,os.path.abspath(os.path.join(os.path.dirname(__file__),"./submodules")))
 import parsing
-
+import time
 
 from std_msgs.msg import Header
 from interfaces.msg import Gps
@@ -49,6 +49,8 @@ class DataPublisher(Node):
 
         # Other initializations
         self.seq = 0                                                    # a sequence number to track how many messages have been published
+
+        time.sleep(4)                                                   # Give some time for subscriber to initialize
         
 
        

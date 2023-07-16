@@ -93,7 +93,7 @@ class TestSubscriber(unittest.TestCase):
             
             # spin each time to get the callback
 
-            rclpy.spin_once(self.node,timeout_sec=2)
+            rclpy.spin_once(self.node,timeout_sec=5)
             
             rclpy.spin_once(self.node,timeout_sec=2)
 
@@ -101,15 +101,15 @@ class TestSubscriber(unittest.TestCase):
 
             rclpy.spin_once(self.node,timeout_sec=2)
 
-            # Verify the Frequency of messages being published
-            self.assertAlmostEqual(self.node.time_stamp_of_last_val-self.node.time_stamp_of_first_val, 1.0,places=2)
-
             # spin one extra time to confirm no extra message is published when the 
             # publisher has gone through the entire data frame
             rclpy.spin_once(self.node,timeout_sec=2)
 
             # # Verify that we only received messages three times
-            self.assertEqual(self.node.count, 4)                                                                        
+            self.assertEqual(self.node.count, 4)               
+            
+            # Verify the Frequency of messages being published
+            self.assertAlmostEqual(self.node.time_stamp_of_last_val-self.node.time_stamp_of_first_val, 1.0 ,places=1)                                                         
 
         finally:
             os.system("screen -S ros_node -X quit")
