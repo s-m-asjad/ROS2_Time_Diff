@@ -35,7 +35,7 @@ class DataSubscriber(Node):
             diff = Float32()
             diff.data = (msg.time - self.previous_time)
             self.publisher_.publish(diff)      # Publish the message
-            self.get_logger().info('The sequence "%s"' %msg.seq + ' difference in seconds was : "%s"' % diff.data)
+            self.get_logger().info('For sequence "%s"' %msg.seq + ' time difference in seconds was : "%s"' % diff.data)
 
             # Update the current values of sequence and time
             self.previous_time = msg.time
