@@ -35,7 +35,7 @@ class DataSubscriber(Node):
             diff = Float32()
             diff.data = (msg.time - self.previous_time)
             self.publisher_.publish(diff)      # Publish the message
-            self.get_logger().info('The most recent difference in seconds was : "%s"' % diff.data)
+            self.get_logger().info('The sequence "%s"' %msg.seq + ' difference in seconds was : "%s"' % diff.data)
 
             # Update the current values of sequence and time
             self.previous_time = msg.time
@@ -46,13 +46,13 @@ def main(args=None):
     
     # Create Node
     rclpy.init(args=args)
-    minimal_subscriber = DataSubscriber()
+    data_subscriber = DataSubscriber()
 
     #Spin
-    rclpy.spin(minimal_subscriber)
+    rclpy.spin(data_subscriber)
 
     #Destroy Node
-    minimal_subscriber.destroy_node()
+    data_subscriber.destroy_node()
     rclpy.shutdown()
 
 
